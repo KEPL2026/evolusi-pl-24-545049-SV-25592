@@ -10,6 +10,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::latest()->get();
+
         return view('tasks.index', compact('tasks'));
     }
 
@@ -32,12 +33,14 @@ class TaskController extends Controller
     public function toggle(Task $task)
     {
         $task->update(['is_done' => ! $task->is_done]);
+
         return redirect()->route('tasks.index');
     }
 
     public function destroy(Task $task)
     {
         $task->delete();
+
         return redirect()->route('tasks.index');
     }
 }
