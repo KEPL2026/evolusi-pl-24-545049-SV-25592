@@ -18,8 +18,13 @@
     <ul class="list-group">
         @forelse ($tasks as $task)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span class="{{ $task->is_done ? 'text-decoration-line-through text-muted' : '' }}">
+                <span>
                     {{ $task->title }}
+                    @if ($task->is_done)
+                        <span class="badge bg-success ms-2">Selesai</span>
+                    @else
+                        <span class="badge bg-warning text-dark ms-2">Pending</span>
+                    @endif
                 </span>
                 <span>
                     <form action="{{ route('tasks.toggle', $task) }}" method="POST" class="d-inline">
